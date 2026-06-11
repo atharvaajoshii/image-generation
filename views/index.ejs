@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Image search Engine</h1>
+        <form action="/search" method="post">
+            <input type="text" name="search" placeholder="search images" required>
+            <button type="submit">search</button>
+        </form>
+        <% if(searchTerm){ %>
+            <h2>Results for <%= searchTerm %>
+            </h2>
+            <% } %>
+                <div class="gallery">
+                    <% images.forEach((image)=> { %>
+                        <div class="card">
+                            <img src="<%= image.src.medium %>" srcset="
+                                <%= image.src.small %> 400w,
+                                <%= image.src.medium %> 800w,
+                                <%= image.src.large %> 1200w
+                                " alt="<%= image.alt %>" loading="lazy">
+                            <div class="info">
+                                <p>
+                                    <%= image.photographer %>
+                                </p>
+                                <a href="<%= image.src.original %>" target="_blank">Open image</a>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+    </div>
+</body>
+
+</html>
