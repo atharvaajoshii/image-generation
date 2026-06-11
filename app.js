@@ -33,10 +33,14 @@ app.post('/search',async(req,res)=>{
             searchTerm
         })
     }catch(error){
+        console.error(error.message);
         res.render("index",{images:[],searchTerm})
     }
 })
 
-app.listen(5000,()=>{
-    console.log("runnig")
-})
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+    console.log(`Running on port ${PORT}`);
+});
